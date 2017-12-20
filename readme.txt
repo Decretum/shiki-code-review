@@ -1,4 +1,4 @@
-In this scr folder, there are three folders:
+In this src folder, there are three folders:
 > review
 > fix
 > complete
