@@ -1,4 +1,4 @@
-package complete;
+package fix;
 
 import java.util.Arrays;
 
@@ -27,22 +27,22 @@ the first solution came out by me, referring solutions provided by leetcode.
 its runtime ranked at beating 11%..
  */
 public class LongestCommonPrefix {
+
     public String longestCommonPrefix(String[] strs) {
         int length = strs.length;
-        if(length == 0) {
+        if (length == 0) {
             return "";
         }
-        if(length == 1) {
+        if (length == 1) {
             return strs[0];
         }
         return longestCommonPrefix(strs, 0, length - 1);
     }
 
     public String longestCommonPrefix(String[] strs, int begin, int end) {
-        if(begin == end) {
+        if (begin == end) {
             return strs[begin];
-        }
-        else{
+        } else {
             int mid = begin + (end - begin) / 2;
             String leftstr = longestCommonPrefix(strs, begin, mid);
             String rightstr = longestCommonPrefix(strs, mid + 1, end);
@@ -53,12 +53,11 @@ public class LongestCommonPrefix {
     public String commonPrefix(String left, String right) {
         int minLength = Math.min(left.length(), right.length());
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < minLength; i++) {
-            if(left.charAt(i) == right.charAt(i)) {
+        for (int i = 0; i < minLength; i++) {
+            if (left.charAt(i) == right.charAt(i)) {
                 sb.append(left.charAt(i));
                 continue;
-            }
-            else{
+            } else {
                 return sb.toString();
             }
         }
@@ -66,29 +65,36 @@ public class LongestCommonPrefix {
     }
 }
 
+// TODO SHIKI having more than one class in one java file is "usually" not a good idea.
+
 /*
 Another method my classmate shared with me
 its runtime ranked at beating 50%
  */
 class LongestCommonPrefix2 {
     public String longestCommonPrefix(String[] strs) {
-        if(strs.length == 0) {
+        if (strs.length == 0) {
             return "";
         }
-        if(strs.length == 1) {
+        if (strs.length == 1) {
             return strs[0];
         }
         Arrays.sort(strs);
         int max = 0;
-        int i;
-        for (i = 0; i < Math.min(strs[0].length(), strs[strs.length - 1].length()); i++) {
-            if(strs[0].charAt(i) != strs[strs.length - 1].charAt(i)) {
+        int i; // todo shiki why is this thing on its own line? why not include in the for loop declaration?
+        for (i = 0; i < Math.min(strs[0].length(), strs[strs.length - 1].length()); i++) { // todo shiki You might want to move the Math.min(...) part out of this for loop declaration.
+            // and here's why:
+            // Every time the for loop finishes, it will check the condition (in this case, the Math.min thing)
+            // Which means that every time the loop finishes, Java will recalculate Math.min(...)
+            // If you move this to be before the for loop declaration, you will calculate it only once and Java will use that same value thereafter.
+            // hit me up on wechat if you have any other questions about this.
+            if (strs[0].charAt(i) != strs[strs.length - 1].charAt(i)) {
                 break;
             }
         }
-        if(max < i)
+        if (max < i) // todo shiki make sure you use { } for if statements even if there's only one line inside the block.
             max = i;
-        return strs[0].substring(0,max);
+        return strs[0].substring(0, max);
     }
 
 }
