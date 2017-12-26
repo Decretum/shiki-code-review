@@ -1,4 +1,4 @@
-package fix;
+package complete;
 
 import java.util.Arrays;
 
@@ -65,8 +65,7 @@ public class LongestCommonPrefix {
     }
 }
 
-// TODO SHIKI having more than one class in one java file is "usually" not a good idea.
-
+// TODO george i just want to show you 2 ways.
 /*
 Another method my classmate shared with me
 its runtime ranked at beating 50%
@@ -81,19 +80,16 @@ class LongestCommonPrefix2 {
         }
         Arrays.sort(strs);
         int max = 0;
-        int i; // todo shiki why is this thing on its own line? why not include in the for loop declaration?
-        for (i = 0; i < Math.min(strs[0].length(), strs[strs.length - 1].length()); i++) { // todo shiki You might want to move the Math.min(...) part out of this for loop declaration.
-            // and here's why:
-            // Every time the for loop finishes, it will check the condition (in this case, the Math.min thing)
-            // Which means that every time the loop finishes, Java will recalculate Math.min(...)
-            // If you move this to be before the for loop declaration, you will calculate it only once and Java will use that same value thereafter.
-            // hit me up on wechat if you have any other questions about this.
+        int i; // TODO george because i used it after the for loop.
+        int end =  Math.min(strs[0].length(), strs[strs.length - 1].length());
+        for (i = 0; i <end; i++) {
             if (strs[0].charAt(i) != strs[strs.length - 1].charAt(i)) {
                 break;
             }
         }
-        if (max < i) // todo shiki make sure you use { } for if statements even if there's only one line inside the block.
+        if (max < i) { //TODO george here i used "i"
             max = i;
+        }
         return strs[0].substring(0, max);
     }
 

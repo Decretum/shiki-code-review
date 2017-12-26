@@ -1,4 +1,4 @@
-package fix;
+package complete;
 
 public class RomanToInt {
 
@@ -18,7 +18,12 @@ public class RomanToInt {
         return sum;
     }
 
-    public int convert(char c) { // TODO SHIKI why don't you just directly return the value instead of storing it in "result"?
+    public int convert(char c) {
+        /*
+         TODO george No, you cannot directly return
+         i did that way before, and it seems have problems.
+         i guess maybe because of the "break"?
+          */
         int result = 0;
         switch (c) {
             case 'I':
