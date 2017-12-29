@@ -14,14 +14,11 @@ public class ValidParentheses {
         for (char c : parentheses) {
             if (c == '(') {
                 stack.push(')');
-            }
-            else if (c == '[') {
+            } else if (c == '[') {
                 stack.push(']');
-            }
-            else if (c == '{') {
+            } else if (c == '{') {
                 stack.push('}');
-            }
-            else if (stack.empty() || stack.pop() != c) { // this step I took from other's
+            } else if (stack.empty() || stack.pop() != c) { // this step I took from other's
                 return false;
             }
         }
